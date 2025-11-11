@@ -7,8 +7,11 @@ $headers = "From: " . $email . "\r\n" .
            "X-Mailer: PHP/" . phpversion();
 $parameters = "-f " . $email;
 
+$message_with_email = "Sent by " .$name . " at " . $email . " <br/>"
+
 if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    mail("mvaughan404@gmail.com", "PORFOLIO SITE MESSAGE **** MVAUGHAN", $message, $headers, $parameters);
+    mail("mvaughan404@gmail.com", "PORFOLIO SITE MESSAGE **** MVAUGHAN", $message_with_email);
+    //mail("mvaughan404@gmail.com", "PORFOLIO SITE MESSAGE **** MVAUGHAN", $message, $headers, $parameters);
     header('Location: ./index.html');
 } else {
     echo "The email address is not valid. <a href=\"./index.html\">home</a>";
