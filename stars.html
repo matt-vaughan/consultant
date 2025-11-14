@@ -20,19 +20,27 @@
             const midground = new Image();
             midground.src = "./images/midground.png";
             
+            const ship = new Image();
+            ship.src = "./images/ship.png";
+
             var background_y = 0;
             var midground_y  = 0;
+
+            var ship_x = 250;
+
+            var speed = 1;
 
             function draw() {
                 ctx.drawImage(background, 0, background_y, 600, 600, 0, 0, canvas.width, canvas.height);
                 ctx.drawImage(midground, 0, midground_y, 600, 600, 0, 0, canvas.width, canvas.height);
+                ctx.drawImage(ship, 0, 0, 100, 100, ship_x, 50, canvas.width/6, canvas.height/6);
 
-                background_y += 1;
+                background_y += speed;
                 if ( background_y >= 600 ) {
                     background_y = 0;
                 }
 
-                midground_y += 2;
+                midground_y += 2*speed;
                 if ( midground_y >= 600 ) {
                     midground_y = 0;
                 }
@@ -40,6 +48,35 @@
                 window.requestAnimationFrame(draw);
             }
             window.requestAnimationFrame(draw);
+
+
+            document.addEventListener("keydown", (e) => {
+                switch ( e.key ) {
+                    case "ArrowUp":
+                        if ( speed > 0 ) {
+                            speed--;
+                        }
+                        break;
+
+                    case "ArrowDown":
+                        if ( speed < 6 ) {
+                            speed++;
+                        }
+                        break;
+
+                    case "ArrowLeft":
+                        if ( ship_x > 0 ) {
+                            ship_x -= 10;
+                        }
+                        break;
+                    
+                    case "ArrowRight":
+                        if ( ship_x < canvas.width - 100 ) {
+                            ship_x += 10;
+                        }
+                        break;
+                }
+            });
 
         </script>
     </body>
